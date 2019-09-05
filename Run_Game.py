@@ -21,8 +21,9 @@ def run_game_with_ML(display, clock, weights):
             angle, snake_direction_vector, apple_direction_vector_normalized, snake_direction_vector_normalized = angle_with_apple(
                 snake_position, apple_position)
             predictions = []
+            #Below is where you feed the neural network with environmental information, and it gives the predicted direction
             predicted_direction = np.argmax(np.array(forward_propagation(np.array(
-                [is_left_blocked, is_front_blocked, is_right_blocked, apple_direction_vector_normalized[0],
+                [is_left_blocked, is_front_blocked, is_right_blocked, apple_direction_vector_normalized[0],#here the environment information
                  snake_direction_vector_normalized[0], apple_direction_vector_normalized[1],
                  snake_direction_vector_normalized[1]]).reshape(-1, 7), weights))) - 1
 
@@ -49,7 +50,9 @@ def run_game_with_ML(display, clock, weights):
             else:
                 score1 += 0
 
-            snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,
+            #snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,
+                                                              button_direction, score, display, clock)
+            snake_position, apple_position, score = play_game_no_pygame(snake_start, snake_position, apple_position,
                                                               button_direction, score, display, clock)
 
             if score > max_score:
