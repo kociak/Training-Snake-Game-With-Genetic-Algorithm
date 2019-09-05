@@ -1,13 +1,15 @@
 from Snake_Game import *
 from Feed_Forward_Neural_Network import *
 
-def run_game_with_ML(display, clock, weights):
+def run_game_with_ML(display, clock, weights,display_this:bool):
     max_score = 0
     avg_score = 0
     test_games = 1
     score1 = 0
     steps_per_game = 2500
     score2 = 0
+    total_score=0
+
 
     for _ in range(test_games):
         snake_start, snake_position, apple_position, score = starting_positions()
@@ -15,7 +17,7 @@ def run_game_with_ML(display, clock, weights):
         count_same_direction = 0
         prev_direction = 0
 
-        for _ in range(steps_per_game):
+        for step in range(steps_per_game):
             current_direction_vector, is_front_blocked, is_left_blocked, is_right_blocked = blocked_directions(
                 snake_position)
             angle, snake_direction_vector, apple_direction_vector_normalized, snake_direction_vector_normalized = angle_with_apple(
@@ -50,11 +52,6 @@ def run_game_with_ML(display, clock, weights):
             else:
                 score1 += 0
 
-            #snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,
-                                                              button_direction, score, display, clock)
-            snake_position, apple_position, score = play_game_no_pygame(snake_start, snake_position, apple_position,
-                                                              button_direction, score, display, clock)
-
             if score > max_score:
                 max_score = score
 
@@ -62,6 +59,15 @@ def run_game_with_ML(display, clock, weights):
                 score2 -= 1
             else:
                 score2 += 2
+            total_score = score1 + score2 + max_score * 5000
+
+            if display_this:
+                snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,button_direction, score, display, clock,step,total_score)
+            else:
+                snake_position, apple_position, score = play_game_no_pygame(snake_start, snake_position, apple_position,
+                                                              button_direction, score, display, clock,step,total_score)
 
 
-    return score1 + score2 + max_score * 5000
+
+
+    return total_score

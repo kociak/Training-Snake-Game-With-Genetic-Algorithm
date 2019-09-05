@@ -156,7 +156,7 @@ def angle_with_apple(snake_position, apple_position):
     return angle, snake_direction_vector, apple_direction_vector_normalized, snake_direction_vector_normalized
 
 
-def play_game(snake_start, snake_position, apple_position, button_direction, score, display, clock):
+def play_game(snake_start, snake_position, apple_position, button_direction, score, display, clock,round,reward):
     crashed = False
     while crashed is not True:
         for event in pygame.event.get():
@@ -169,13 +169,13 @@ def play_game(snake_start, snake_position, apple_position, button_direction, sco
 
         snake_position, apple_position, score = generate_snake(snake_start, snake_position, apple_position,
                                                                button_direction, score)
-        pygame.display.set_caption("SCORE: " + str(score))
+        pygame.display.set_caption("SCORE: " + str(score)+ " Round: "+str(round)+" Reward: "+str(reward))
         pygame.display.update()
-        clock.tick(50000)
+        #clock.tick(50000)
 
         return snake_position, apple_position, score
 
-def play_game_no_pygame(snake_start, snake_position, apple_position, button_direction, score, display, clock):
+def play_game_no_pygame(snake_start, snake_position, apple_position, button_direction, score, display, clock,round,reward):
     # crashed = False
     # while crashed is not True:
     #     for event in pygame.event.get():
@@ -213,4 +213,4 @@ white = (255,255,255)
 
 pygame.init()
 display=pygame.display.set_mode((display_width,display_height))
-clock=pygame.time.Clock()
+#clock=pygame.time.Clock()
