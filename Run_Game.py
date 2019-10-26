@@ -1,7 +1,7 @@
 from Snake_Game import *
 from Feed_Forward_Neural_Network import *
 
-def run_game_with_ML(display, clock, weights,display_this:bool):
+def run_game_with_ML(display, pclock, weights,display_this:bool):
     max_score = 0
     avg_score = 0
     test_games = 1
@@ -62,10 +62,10 @@ def run_game_with_ML(display, clock, weights,display_this:bool):
             total_score = score1 + score2 + max_score * 5000
 
             if display_this:
-                snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,button_direction, score, display, clock,step,total_score)
+                snake_position, apple_position, score = play_game(snake_start, snake_position, apple_position,button_direction, score, display, pclock,step,total_score)
             else:
                 snake_position, apple_position, score = play_game_no_pygame(snake_start, snake_position, apple_position,
-                                                              button_direction, score, display, clock,step,total_score)
+                                                              button_direction, score, display, pclock,step,total_score)
 
 
 

@@ -1,12 +1,12 @@
 from Run_Game import *
 from random import choice, randint
 
-def cal_pop_fitness(pop,clock):
+def cal_pop_fitness(pop,pclock):
     # calculating the fitness value by playing a game with the given weights in chromosome
     fitness = []
     for i in range(pop.shape[0]):
         #fit = run_game_with_ML(display,clock,pop[i])
-        fit = run_game_with_ML(display, clock, pop[i],False)
+        fit = run_game_with_ML(display, pclock, pop[i],False)
         print('fitness value of chromosome '+ str(i) +' :  ', fit)
         fitness.append(fit)
     return np.array(fitness)
